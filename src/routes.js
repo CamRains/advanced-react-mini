@@ -11,19 +11,28 @@ export default <Switch>
     {/* Presentational */}
     <Route
         exact path='/'
-        // component={PokemonContainer}
+        component={PokemonContainer}
         />
     {/* HOC */}
     <Route
         path='/pokemon-hoc'
-        // component={Pokemon}
+        component={Pokemon}
         />
     {/* Render Props */}
     <Route
         path='/pokemon-renderprops'
+        render={() => {
+            return(
+                <DataFetcher url="https://api.pokemontcg.io/v1/cards?setCode=base1"
+                renderDemPokemon={(data) => {
+                    return <PokemonRender  data={data}/>
+                }}
+                />
+            )
+        }}
         />
     {/* PropTypes */}
     <Route path='/prop-types'
-    // component={PropTypes}
+    component={PropTypes}
         />
 </Switch>
